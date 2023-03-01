@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscriptiion - Pok'Gourmet{% endblock %}
+
+{% block body %}
+    
+    <section  id="sectionform " class="formulaire col"{# class="container p-6 mr-6 ml-16 rounded-lg shadow-lg bg-white max-w-sm my-3 flex justify-center" #}>
+        <h2 class="h3vert ml-14 mb-6">Inscrivez-vous!</h2>  
+        <div class="row form1 bg-white ml-14 mr-4 ">
+            <div class="col p-2">
+
+                    {{ form_start(inscriptionForm) }}
+                        
+                            {{form_row(inscriptionForm.lastname)}}
+                            {{form_row(inscriptionForm.firstname)}}
+                       
+                        
+                            {{form_row(inscriptionForm.phone)}}
+                            {{form_row(inscriptionForm.email)}}
+                      
+                        
+                            {{form_row(inscriptionForm.zipcode)}}
+                            {{form_row(inscriptionForm.address)}}
+                       
+                       
+                        {{form_row(inscriptionForm.password)}}
+                        {{form_row(inscriptionForm.confirm_password)}}
+                        <button class="bouttonBeige mt-4" style="background-color: #D79D66; color:#ffffff" type="submit">
+                        Inscription
+                        </button>
+                    {{ form_end(inscriptionForm) }}
+                    
+              
+            </div>
+        </div>
+    </section>
+{% endblock %}

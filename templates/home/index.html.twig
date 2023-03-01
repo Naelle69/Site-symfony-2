@@ -1,0 +1,138 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home - Pok'Gourmet{% endblock %}
+
+
+{% block body %}
+    <header>
+        {% include "main/homepage/contenuHomepage.html.twig" %} 
+    </header>
+    <main>
+{# ------------------PLATS------------------- #}
+        <div id="plat" class="nosplats sm:mt-10">
+            <div class="h offres ml-16 mt-10">
+              <h2 class="h2marron mb-4"> Nos offres </h2>
+              <h3 class="h3vert mb-4"> Nos plats </h3>
+            </div>
+           
+            <div class="relative snap-mandatory snap-x overflow-auto ml-12 mt-10">
+            {% for plat in plats %}
+                <div class="plat p-10 shrink-0  snap-center md:shrink">
+                    <span class="contenu-plat">
+                        <h4 class="h4vert mb-4"> {{ plat.titre }}</h4
+                        <p class="ptexte pr-12"> {{ plat.texte }}</p>
+                            <span class="achat mt-4 mb-4 flex justify-between ">
+                                <h4 class="h4vert prix"> Prix: {{ plat.price }} {# € #}</h4>
+                                <a class="ajout" href="{{path("app_panier_add", {id: plat.id})}}"> + </a>
+                            </span>
+                    </span>
+                    <img class="imageplat" src="{{ asset('assets/images/') ~ plat.image }}"/>
+                </div>
+            {% endfor %}
+            </div> 
+        </div> 
+{# ------------------EXTRAS------------------- #}
+        <div class="section2 pl-10">
+            <div class="mt-5">
+                <h3 class="h3vert"> Nos extras </h3>
+            </div>
+
+            <div class="nosextras mx-4">
+                <div class="imageExtras imageExtras1">
+                    <img src="{{asset('assets/images/boisson.jpg')}}" width="60" heigh="60" class="img-extras rounded-full mb-2" alt="boisson"/>
+                    <a href="https://www.youtube.com/watch?v=iObxqzbHl9Y"class="ptexteBeige lien text-center p-0">Boissons<a>
+                </div>
+                <div class="imageExtras imageExtras2">
+                    <img src="{{asset('assets/images/entree.jpg')}}" width="60" heigh="60" class="img-extras rounded-full  mb-2 mx-6" alt="entre"/>
+                    <a href="https://www.youtube.com/watch?v=iObxqzbHl9Y"class="ptexteBeige lien text-center p-0">Entrées<a>
+                </div>
+                <div class="imageExtras imageExtras3">
+                    <img src="{{asset('assets/images/fruit.jpg')}}" width="60" heigh="60" class="img-extras rounded-full mb-2" alt="dessert"/>
+                    <a href="https://www.youtube.com/watch?v=iObxqzbHl9Y"class="ptexteBeige lien text-center p-0">Desserts<a>
+                </div>
+            </div>
+            <div class="infos w-64">
+                <h4 class="ptexteBeige mb-2">D'où viennent nos produits</h4>
+                <p class="h5blanc informations mb-2 p-1 text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus semper bibendum ex et eleifend. Phasellus semper bibendum ex et eleifend. Donec accumsan.</p>
+                <a class="h5marron underline " href="https://maisoncolom.fr/?utm_source=google&utm_medium=cpc&utm_campaign=16519503723&utm_content=137275443027&utm_term=legumes%20en%20ligne&gclid=EAIaIQobChMIhMHk1Oyn_QIVFpBoCR1ajAbuEAAYASAAEgLbH_D_BwE"> Suivez le lien</a>
+            </div>
+        </div>   
+            
+{# ------------------RECETTES------------------- #}
+        <div class="section3">
+            <div>
+                <div class="h titrerecettes mt-12 mx-6">
+                    <h2 class="h2marron mb-4"> Nos idées recettes </h2>
+                    <h3 class="h3vert mb-2"> Des recettes à des prix bas </h3>
+                    <p class="ptexte texterecettes mb-4"> 
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus semper bibendum ex et eleifend. Donec accumsan. Pellentesque senectus 
+                    neque. Pellentesque se Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus semper bibendum ex et eleifend. Pellentesque senectus neque.
+                    </p>
+                </div>
+
+                <div class=" mb-20 relative snap-x overflow-auto text-center" >
+                    {% for recette in recettes %}
+                        <div class="recette p-1 shrink-0 ml-4 snap-center md:shrink">
+                            <div class="flip-card">
+                                <div class="flip-card-inner">
+                                    <div class="flip-card-front">
+                                        <img class="imagerecette" src="{{ asset('assets/images/') ~ recette.imageFront }}"/>
+                                        <div class="front ideetext text-center">
+                                            <h4 class="h4vert mb-6">{{ recette.titreFront }}</h4>
+                                            <h4 class="h4blanc">{{ recette.soustitre }}</h4>
+                                        </div>
+                                    </div>
+                                    <div class="flip-card-back p-4">
+                                        <img class="imagerecette2" src="{{ asset('assets/images/') ~ recette.imageBack }}"/>
+                                        <div class="back ideetext text-start">
+                                            <h4 class="h4blanc ptexteBeige mb-2 pr-4">{{ recette.titreBack }}</h4>
+                                            <h3 class="ptexte2 mb-2 text-justify">{{ recette.texte }}</h3>
+                                            <a href="https://www.youtube.com/watch?v=iObxqzbHl9Y"class="ptexteBeige lien">{{ recette.lien }}</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            {% include "main/body/exclusivites.html.twig" %}
+            
+        </div>
+{# ------------------RECETTES------------------- #}
+        
+        {% include "main/body/astuces.html.twig" %} 
+
+        <section id="sectionform" class="col">
+            <h2 class="h3vert mb-6">Contactez-nous!</h2>
+            <div class="form1">
+                <div class="row form2 bg-white ml-14 mr-4">
+                    <div class="col p-2 ">
+                        
+                        <form class="mt-6" method="post">     
+                            {{ form_start(form) }}
+                                {{form_row(form.lastname)}}
+                                {{form_row(form.Firstname)}}
+                                        
+                                {{form_row(form.phone)}}
+                                {{form_row(form.email)}}
+                                    
+                                {{form_row(form.message)}}
+                                {{form_row(form.password)}}
+                                <button class="bouttonBeige mt-4" style="background-color: #D79D66; color:#ffffff" type="submit">
+                                Soumettre
+                                </button>
+                            {{ form_end(form) }}
+                        </form>
+                    </div>
+                </div>
+                <div class="map d-flex ml-14 mr-4 justify-content-center">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2628.7982815413593!2d2.433622515893346!3d48.785741179280485!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e673449d8b48e3%3A0x83768eac6932ce9f!2s9%20Rue%20Marc%20Seguin%2C%2094000%20Cr%C3%A9teil!5e0!3m2!1sfr!2sfr!4v1664376805336!5m2!1sfr!2sfr" style="border:0;" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>   
+        </section>
+
+          
+    </main>
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}BlogController!{% endblock %}
+
+{% block body %}
+
+<style scoped>
+section{
+    height: auto;
+    margin: 100px 30px;
+    width: 100%;
+}
+
+.article{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+
+/* .boutton{
+    border-radius: 10px 2px; 
+    padding: 5px 15px;
+} */
+</style>
+
+
+    <section class="blog ">
+        <h2 class="h2marron mb-4"> Notre Blog Conseils </h2>
+        <h4 class="ptexte texterecettes mb-4 "> 
+            At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.
+        </h4>
+        {% for article in articles %}{#  pour chaque article dans le tableau des articles, je veux afficher ce table si dessous #}
+            <div class="article {# md-row lg-row #} flex justify-center mt-4 mb-8">
+                <div class="card-article shadow-lg bg-white max-w-lg rounded-t-lg ">
+                    <a href="#">
+                        <img class="rounded-t-lg imageArticle" src="{{ asset('assets/images/') ~ article.image}}" alt=""/>
+                    </a>
+                    {# <img class="" src="" style="width: 100%; height: 30%;"/> #}
+                    <h2 class="h2vert mb-4 p-6">{{ article.titre}}</h2>
+                    <h4 class="ptexte text-base mb-4 p-6">{{ article.texte}}</h4>
+                    <h4 class="metadata p-6">Ecrit le {{ article.createdAt | date ('d/m/Y') }} 
+                        à {{ article.createdAt | date('H:I') }}</h4>
+                   {#  <button href="#" type="button" class="boutonBeige mb-6 inline-block px-6 py-2.5  text-white font-medium text-xs leading-tight uppercase rounded shadow-md  hover:shadow-lg  focus:shadow-lg focus:outline-none focus:ring-0  active:shadow-lg transition duration-150 ease-in-out">Lire la suite</button>  #}     
+                </div>  
+                <span class="md:space-x-1 space-y-1 md:space-y-0 mt-4 mb-4">
+                    <button style="background-color: rgb(72,69,38);" class="boutton inline-block px-6 py-2.5 text-white font-medium text-xs leading-tight  shadow-md  hover:shadow-lg  focus:shadow-lg focus:outline-none focus:ring-0  active:shadow-lg transition duration-550 ease-in-out" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                    lire la suite
+                    </button>
+                    <button style="background-color: #D79D66;" class="boutton inline-block px-6 py-2.5 text-white font-medium text-xs leading-tight  shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                    Revenir
+                    </button>
+                </span>
+                <div class="collapse" id="collapseExample">
+                    <div class="block p-6 rounded-lg shadow-lg bg-white">
+                    Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+                    </div>
+
+                </div> 
+            </div> 
+   
+        {% endfor %}               
+    </section>
+
+{% endblock %}
+
+
